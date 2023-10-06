@@ -13,7 +13,6 @@ services:
           - /etc/localtime:/etc/localtime:ro
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/exploreWithMeStat?user=user&password=user
-      - TZ=Europe/Moscow
 
   stats-db:
     image: postgres:14-alpine
@@ -27,7 +26,6 @@ services:
       - POSTGRES_DB=exploreWithMeStat
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=user
-      - TZ=Europe/Moscow
 
   ewm-service:
     build: main_svc
@@ -43,7 +41,6 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/exploreWithMe?user=userdb&password=userdb
       - STAT_SERVER_URL=http://ewm-stat:9090
-      - TZ=Europe/Moscow
 
   ewm-db:
     image: postgres:14-alpine
@@ -57,4 +54,3 @@ services:
       - POSTGRES_DB=exploreWithMe
       - POSTGRES_USER=userdb
       - POSTGRES_PASSWORD=userdb
-      - TZ=Europe/Moscow
