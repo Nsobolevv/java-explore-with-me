@@ -33,10 +33,10 @@ public class StatServiceImpl implements StatService {
         if (uris == null) {
             return unique ? viewStatsMapper.toEntityList(statServerRepository.findAllUniqueIp(start, end))
                     : viewStatsMapper.toEntityList(statServerRepository.findAllNotUniqueIp(start, end));
-        } else {
-            return unique ? viewStatsMapper.toEntityList(statServerRepository.findUniqueIpByUris(start, end, uris))
+        }
+        return unique ? viewStatsMapper.toEntityList(statServerRepository.findUniqueIpByUris(start, end, uris))
                     : viewStatsMapper.toEntityList(statServerRepository.findNotUniqueIpByUris(start, end, uris));
 
-        }
+
     }
 }

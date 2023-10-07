@@ -5,11 +5,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.practicum.server.constants.Pattern;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,5 +20,6 @@ public class EndpointHit {
     private String uri;
     private String ip;
     @DateTimeFormat(pattern = Pattern.DATE)
+    @Column(name = "datetime", nullable = false)
     private LocalDateTime timestamp;
 }

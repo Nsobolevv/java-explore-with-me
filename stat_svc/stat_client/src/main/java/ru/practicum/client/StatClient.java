@@ -15,7 +15,7 @@ import ru.practicum.dto.ViewStatsDto;
 import ru.practicum.exceptions.StatsException;
 
 import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,21 +39,12 @@ public class StatClient {
 
     public List<ViewStatsDto> getStats(String start, String end, List<String> uris, Boolean unique) {
 
-        Map<String, Object> parameters = new HashMap<>();
-        String path;
-        if (uris == null) {
-            parameters.put("start", start);
-            parameters.put("end", end);
-            parameters.put("unique", unique);
-            path = serverUrl + "/stats?start={start}&end={end}&unique={unique}";
-        } else {
-            parameters.put("start", start);
-            parameters.put("end", end);
+        Map<String, Object> parameters = Map.of("start", start, "end", end, "unique", unique);
+        String path = serverUrl + "/stats?start={start}&end={end}&unique={unique}";
+        if (uris != null) {
             parameters.put("uris", uris);
-            parameters.put("unique", unique);
-            path = serverUrl + "/stats?start={start}&end={end}&uris={uris}&unique={unique}";
+            path += "&uris={uris}";
         }
-
         ResponseEntity<String> response = restTemplate.getForEntity(path, String.class, parameters);
 
         ObjectMapper objectMapper = new ObjectMapper();
