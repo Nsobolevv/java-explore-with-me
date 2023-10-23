@@ -38,4 +38,5 @@ public interface StatServerRepository extends JpaRepository<EndpointHit, Long> {
             "group by h.app, h.uri " +
             "order by count(h.app) desc")
     List<ViewStats> findNotUniqueIpByUris(LocalDateTime start, LocalDateTime end, List<String> uris);
+
 }
