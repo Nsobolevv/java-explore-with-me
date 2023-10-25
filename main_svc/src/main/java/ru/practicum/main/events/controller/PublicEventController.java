@@ -3,6 +3,7 @@ package ru.practicum.main.events.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.main.constants.Pattern;
 import ru.practicum.main.events.dto.EventFullDto;
 import ru.practicum.main.events.dto.EventShortDto;
 import ru.practicum.main.events.model.enums.SortEventsBy;
@@ -20,15 +21,15 @@ public class PublicEventController {
     private final EventService service;
 
     @GetMapping
-    public List<EventShortDto> getEventsPublic(@RequestParam(value = "text", required = false) String text,
-                                               @RequestParam(value = "categories", required = false) List<Long> categories,
-                                               @RequestParam(value = "paid", required = false) Boolean paid,
-                                               @RequestParam(value = "rangeStart", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-                                               @RequestParam(value = "rangeEnd", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
-                                               @RequestParam(value = "onlyAvailable", defaultValue = "false", required = false) boolean onlyAvailable,
-                                               @RequestParam(value = "sort", required = false) SortEventsBy sort,
-                                               @RequestParam(value = "from", defaultValue = "0", required = false) int from,
-                                               @RequestParam(value = "size", defaultValue = "10", required = false) int size,
+    public List<EventShortDto> getEventsPublic(@RequestParam(required = false) String text,
+                                               @RequestParam(required = false) List<Long> categories,
+                                               @RequestParam(required = false) Boolean paid,
+                                               @RequestParam(required = false) @DateTimeFormat(pattern = Pattern.DATE) LocalDateTime rangeStart,
+                                               @RequestParam(required = false) @DateTimeFormat(pattern = Pattern.DATE) LocalDateTime rangeEnd,
+                                               @RequestParam(defaultValue = "false") boolean onlyAvailable,
+                                               @RequestParam(required = false) SortEventsBy sort,
+                                               @RequestParam(defaultValue = "0") int from,
+                                               @RequestParam(defaultValue = "10") int size,
                                                HttpServletRequest request) {
         return service.getEventsPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size, request);
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
+import ru.practicum.main.constants.Pattern;
 import ru.practicum.main.events.model.enums.AdminStateAction;
 import ru.practicum.main.location.dto.LocationDto;
 
@@ -22,7 +23,7 @@ public class UpdateEventAdminRequest {
     Long category;
     @Length(min = 20, max = 7000)
     String description;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Pattern.DATE)
     @Future
     LocalDateTime eventDate;
     LocationDto location;

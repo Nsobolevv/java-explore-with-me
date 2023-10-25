@@ -24,8 +24,8 @@ public class UserEventController {
 
     @GetMapping
     public List<EventShortDto> getEventsByUser(@Positive @PathVariable long userId,
-                                               @PositiveOrZero @RequestParam(value = "from", defaultValue = "0", required = false) int from,
-                                               @Positive @RequestParam(value = "size", defaultValue = "10", required = false) int size) {
+                                               @PositiveOrZero @RequestParam(defaultValue = "0") int from,
+                                               @Positive @RequestParam(defaultValue = "10") int size) {
         return service.getEventsByUser(userId, from, size);
     }
 

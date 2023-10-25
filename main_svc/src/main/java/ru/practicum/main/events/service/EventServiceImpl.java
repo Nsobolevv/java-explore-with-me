@@ -14,6 +14,7 @@ import ru.practicum.dto.EndpointHitDto;
 import ru.practicum.dto.ViewStatsDto;
 import ru.practicum.main.categories.model.Category;
 import ru.practicum.main.categories.repository.CategoryRepository;
+import ru.practicum.main.constants.Pattern;
 import ru.practicum.main.events.dto.*;
 import ru.practicum.main.events.dto.mapper.EventMapper;
 import ru.practicum.main.events.model.Event;
@@ -46,7 +47,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class EventServiceImpl implements EventService {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATE);
     private final EventRepository repository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;

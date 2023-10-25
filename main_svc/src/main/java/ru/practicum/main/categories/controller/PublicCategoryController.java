@@ -15,13 +15,13 @@ public class PublicCategoryController {
     private final CategoryService service;
 
     @GetMapping
-    public List<CategoryDto> getAllCategoriesPublic(@RequestParam(name = "from", defaultValue = "0", required = false) int from,
-                                                    @RequestParam(name = "size", defaultValue = "10", required = false) int size) {
+    public List<CategoryDto> getAllCategoriesPublic(@RequestParam(defaultValue = "0") int from,
+                                                    @RequestParam(defaultValue = "10") int size) {
         return service.getAllCategories(from, size);
     }
 
     @GetMapping("/{catId}")
-    public CategoryDto getByIdPublic(@PathVariable(name = "catId") long catId) {
+    public CategoryDto getByIdPublic(@PathVariable long catId) {
         return service.getCategoryById(catId);
     }
 }

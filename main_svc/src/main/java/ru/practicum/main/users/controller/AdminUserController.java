@@ -19,9 +19,9 @@ public class AdminUserController {
     private final UserService service;
 
     @GetMapping
-    public List<UserDto> get(@RequestParam(value = "ids", required = false) List<Long> ids,
-                             @RequestParam(value = "from", required = false, defaultValue = "0") int from,
-                             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
+    public List<UserDto> get(@RequestParam(required = false) List<Long> ids,
+                             @RequestParam(defaultValue = "0") int from,
+                             @RequestParam(defaultValue = "10") int size) {
         return service.get(ids, from, size);
     }
 

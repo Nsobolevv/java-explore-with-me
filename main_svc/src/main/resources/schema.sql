@@ -1,4 +1,3 @@
-drop table if exists users, categories, locations, events, requests, compilations, event_compilation;
 
 create table if not exists users (
 id serial not null primary key,
@@ -46,7 +45,7 @@ status varchar(9) not null
 create table if not exists compilations (
 id serial not null primary key,
 title varchar(1000) not null,
-pinned boolean default false
+pinned boolean not null default false
 );
 
 create table if not exists event_compilation (
