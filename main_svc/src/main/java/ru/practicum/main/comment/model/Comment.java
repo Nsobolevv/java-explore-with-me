@@ -39,7 +39,7 @@ public class Comment {
     @JoinColumn(name = "author_id")
     private User author;
 
-    @Column(name ="comment_text", nullable = false, length = 512)
+    @Column(name = "comment_text", nullable = false, length = 512)
     private String text;
 
     @Enumerated(EnumType.STRING)
