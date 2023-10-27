@@ -79,7 +79,7 @@ public class CommentServiceImpl implements CommentService {
         userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(String.format("User with id=%d was not found", userId)));
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new CommentNotFoundException(String.format("Comment with id=%d was not found", commentId)));
-        if (!(comment.getAuthor().getId() == userId)) {
+        if (comment.getAuthor().getId() != userId) {
             throw new ForbiddenArgumentException("Can not update comment from other user.");
         }
         if (comment.getState() == CommentState.CONFIRMED) {
@@ -111,11 +111,7 @@ public class CommentServiceImpl implements CommentService {
         log.info("Confirm/reject comment with ID = " + commentId + ". New state: " + isConfirm);
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new CommentNotFoundException(String.format("Comment with id=%d was not found", commentId)));
-        if (isConfirm) {
-            comment.setState(CommentState.CONFIRMED);
-        } else {
-            comment.setState(CommentState.REJECTED);
-        }
+        comment.setState(isConfirm ? CommentState.CONFIRMED : CommentState.REJECTED);
         comment.setPublishedOn(LocalDateTime.now());
         return toCommentResponseDto(commentRepository.save(comment));
     }

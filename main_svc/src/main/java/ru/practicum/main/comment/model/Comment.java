@@ -1,11 +1,6 @@
 package ru.practicum.main.comment.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import ru.practicum.main.comment.model.enums.CommentState;
 import ru.practicum.main.events.model.Event;
@@ -24,9 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -46,7 +39,7 @@ public class Comment {
     @JoinColumn(name = "author_id")
     private User author;
 
-    @Column(nullable = false, length = 512)
+    @Column(name ="comment_text", nullable = false, length = 512)
     private String text;
 
     @Enumerated(EnumType.STRING)
