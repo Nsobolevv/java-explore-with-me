@@ -96,4 +96,12 @@ public class ErrorHandler {
         return new ApiError("FORBIDDEN", "For the requested operation the conditions are not met.",
                 e.getMessage(), LocalDateTime.now());
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiError handleCommentNotFoundException(final CommentNotFoundException e) {
+        log.warn("CommentNotFoundException!, {}", e.getMessage());
+        return new ApiError("NOT_FOUND", "The required object was not found.",
+                e.getMessage(), LocalDateTime.now());
+    }
 }
